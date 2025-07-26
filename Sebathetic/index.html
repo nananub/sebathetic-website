@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sebathetic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- background -->
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0;">
+  <filter id="distortionFilter">
+    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="turbulence">
+      
+      <animate 
+        attributeName="baseFrequency"
+        dur="0.2s"
+        values="0.02;0.1;0.02"
+        keyTimes="0;0.5;1"
+        repeatCount="indefinite"
+      />
+    </feTurbulence>
+    <feDisplacementMap
+      in="SourceGraphic"
+      in2="turbulence"
+      scale="20"
+      xChannelSelector="R"
+      yChannelSelector="G"
+    />
+  </filter>
+</svg>
+
+<audio id="click-sound" src="audio/click.mp3" preload="auto"></audio>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const clickSound = document.getElementById('click-sound');
+    clickSound.volume = 2.0;   
+
+    document.addEventListener('click', () => {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    });
+  });
+</script>
+
+<video autoplay muted loop id="bg-video">
+    <source src="videos/dust3.mp4" type="video/mp4">
+  </video>
+  
+<!-- background music-->
+   <img
+    id="music-toggle"
+    src="images/eye2.png"
+    alt="Toggle music"
+  />
+
+  <audio
+    id="bg-music"
+    src="audio/music box.mp3"
+    loop
+    preload="auto"
+  ></audio>
+
+<!-- images and content -->
+  <div class="sebby">
+  <div class="home-section">
+    <img src="images/homepage1.PNG" alt="homepage" class="home">
+  </div>
+
+<!-- title -->
+  <div class="logo">
+    <div class="seb">SEB</div>
+    <div class="athetic">ATHETIC</div>
+    <div class="credit">Poem by Nana Nguyen</div>
+  </div>
+</div>
+
+  <script>
+    document.querySelector('.logo')
+      .addEventListener('click', e => {
+        e.currentTarget.classList.toggle('crossed');
+      });
+  </script>
+
+<!-- Computer page -->
+<section class="computer-section">
+  <div class="text-content">
+    <p>
+      <span>Soft static hum behind the wall,</span><br>
+      <span>Light from a screen where shadows fall.</span>
+    </p>
+  </div>
+
+  <div class="computer-container">
+    <img src="images/computer1.png" alt="Computer" class="computer">
+  </div>
+</section>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrapper = document.querySelector('.computer-container');
+    const img     = wrapper.querySelector('.computer');
+    const orig    = 'images/computer1.png';
+    const alt     = 'images/computer2.png';
+
+    wrapper.addEventListener('click', () => {
+      // first flash
+      img.src = alt;
+      setTimeout(() => {
+        // back to original
+        img.src = orig;
+        // second flash
+        setTimeout(() => {
+          img.src = alt;
+          setTimeout(() => {
+            // end of glitch
+            img.src = orig;
+          }, 300);
+        }, 300);
+      }, 300);
+    });
+  });
+</script>
+
+<!-- coffee page -->
+<section class="coffee-section">
+  <div class="coffee-container">
+    <img src="images/coffee1.png" alt="Coffee" class="coffee-img">
+    <img src="images/coffee2.png" alt="Reveal" class="coffee-overlay">
+  </div>
+  <div class="text-content2">
+    <p>
+      <span>The ashtray full, the coffee cold,</span><br>
+      <span>His thoughts too loud, his spine too old.</span>
+    </p>
+  </div>
+</section>
+
+<!-- pillow page-->
+<section class="pillow-section">
+  <div class="text-content3">
+    <p>
+      <span>Curtains never drawn since June,</span><br>
+      <span>He sleeps beneath a broken moon.</span>
+    </p>
+  </div>
+  <div class="pillow-container">
+    <img src="images/pillow1.png" alt="pillow" class="pillow-img">
+    <img src="images/pillow2.png" alt="Reveal" class="pillow-overlay">
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', ()=>{
+    const pc = document.querySelector('.pillow-container');
+    pc.addEventListener('click', () => {
+      pc.classList.toggle('glitch');
+    });
+  });
+</script>
+
+<!-- frog page-->
+ <section class="frog-section">
+  <div class="frog-container">
+    <img src="images/frog1.png" alt="Frog" class="frog-img">
+    <img src="images/frog2.png" alt="Reveal" class="frog-overlay">
+  </div>
+  <div class="text-content4">
+    <p>
+      <span>The frogs are singing far away,</span><br>
+      <span>He counts regrets to end the day.</span>
+    </p>
+  </div>
+</section>
+
+<!-- guitar page-->
+ <section class="guitar-section">
+  <div class="text-content5">
+    <p>
+      <span>The world is calling through the screen,</span><br>
+      <span>A place he’s been but never seen.</span>
+    </p>
+  </div>
+  <div class="guitar-container">
+    <img src="images/guitar1.png"   alt="guitar"       class="guitar-img">
+    <img src="images/guitar2.png"   alt="swap-to-2"    class="guitar-overlay1">
+    <img src="images/guitar3.png"   alt="hover-to-3"   class="guitar-overlay2">
+  </div>
+</section>
+
+<!-- smoke page -->
+ <section class="smoke-section">
+  <div class="smoke-container">
+    <img src="images/smoke1.png" alt="smoke" class="smoke-img">
+    <img src="images/smoke2.png" alt="Reveal" class="smoke-overlay1">
+    <img src="images/smoke3.png" alt="Reveal" class="smoke-overlay2">
+  </div>
+  <div class="text-content6">
+    <p>
+      <span>The code blinks like a dying star,</span><br>
+      <span>He’s home, and yet, he’s still too far.</span>
+    </p>
+  </div>
+</section>
+
+<!-- seby page-->
+ <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;">
+  <filter id="distortionFilter">
+    <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="turbulence">
+      <animate
+        attributeName="baseFrequency"
+        dur="0.4s"
+        values="0.02;0.08;0.02"
+        keyTimes="0;0.5;1"
+        repeatCount="indefinite"
+      />
+    </feTurbulence>
+    <feDisplacementMap
+      in="SourceGraphic"
+      in2="turbulence"
+      scale="20"
+      xChannelSelector="R"
+      yChannelSelector="G"
+    />
+  </filter>
+</svg>
+
+<section class="seby-section">
+  <div class="text-content7">
+    <p>
+      <span>The keys click soft like falling rain,</span><br>
+      <span>The silence amplifies the pain.</span>
+    </p>
+  </div>
+  <div class="seby-container">
+    <img src="images/seb1.png"   alt="seby"       class="seby">
+    <img src="images/seb2.png"   alt="Reveal"    class="seby-overlay1">
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.seby-container');
+    container.addEventListener('click', () => container.classList.toggle('distort'));
+  });
+</script>
+
+<!-- hand page -->
+ <section class="hand-section">
+  <div class="text-content8">
+    <p>
+      <span>No doors are locked, but none are wide,</span><br>
+      <span>He’s not alone, just stuck inside.</span>
+    </p>
+  </div>
+  <div class="hand-container">
+    <img src="images/hand1.png"   alt="hand"       class="hand">
+    <img src="images/hand2.png"   alt="Reveal"    class="hand-overlay1">
+    <img src="images/hand3.png"   alt="Reveal"    class="hand-overlay2">
+    <img src="images/hand4.png"   alt="Reveal"    class="hand-overlay3">
+    <img src="images/hand5.png"   alt="Reveal"    class="hand-overlay4">
+   </div>
+ </section>
+
+<!-- background music -->
+ <audio id="bg-music" src="audio/music box.mp3" loop preload="auto"></audio>
+ <script src="script.js" defer></script>
+ </body>
+ </html>
+
+
+</body>
+</html>
