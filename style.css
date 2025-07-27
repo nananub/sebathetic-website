@@ -1,0 +1,922 @@
+/* make the page vertically scrollable */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+   overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  height: auto;
+}
+
+/* make the cursor a hand */
+html, body, * {
+  cursor: pointer !important;
+}
+
+/*font faces*/
+@font-face {
+  font-family: 'MyFont1';
+  src: url('fonts/MyImaginaryFriend.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyFont2';
+  src: url('fonts/SarasHandwritingRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MyFont3';
+  src: url('fonts/TenOClockRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* background music */
+#music-toggle {
+  position: fixed;
+  top: -10px;
+  right: 20px;
+  width: 150px;    
+  height: 150px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+/* background dust */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;  
+  z-index: -1;        
+}
+
+body {
+  background-color: #111;
+}
+
+/* homepage */
+.sebby {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px; 
+  position: relative;
+  z-index: 3;
+}
+
+.home-section {
+  position: relative;
+  width: 1200px;
+  height: auto;
+}
+
+.home {
+  width: 1800px;
+  position: relative;
+  left: -350px;
+  animation: wiggle 0.5s infinite ease-in-out;
+  transform-origin: center;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(0.1deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-0.1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.home-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -350px;
+  width: 1800px;
+  height: 100%;
+  background-image: url('images/homepage2.PNG');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: glitchSwitch 5s infinite;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+}
+
+@keyframes glitchSwitch {
+  0%, 40% { opacity: 0; }
+  45%, 85% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+/* poem title */
+.logo {
+  font-family: 'MyFont1', sans-serif;
+  text-align: center;
+  position: absolute;
+  top: 300px; 
+  left: 420px;
+  width: 100%;
+  z-index: 3; 
+  color: white;
+  display: inline-block;           
+  animation: glitch 3s infinite; 
+  cursor: pointer;
+}
+
+.seb {
+  font-size: 250px;
+  letter-spacing: 15px;
+}
+
+.athetic {
+  font-size: 170px;
+  margin-top: -20px;
+  letter-spacing: 10px;
+}
+
+.credit {
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  margin-top: 10px;
+  font-style: italic;
+  opacity: 0.8;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+/* glitch effect title */
+@keyframes glitch {
+  0% {
+    transform: translate(0,0);
+    text-shadow: 2px 0 red;
+  }
+  20% {
+    transform: translate(-2px,2px);
+    text-shadow: -2px 0 cyan;
+  }
+  40% {
+    transform: translate(2px,-2px);
+    text-shadow: 2px 0 red;
+  }
+  60% {
+    transform: translate(-2px,-2px);
+    text-shadow: -2px 0 purple;
+  }
+  80% {
+    transform: translate(2px,2px);
+    text-shadow: 2px 0 red;
+  }
+  100% {
+    transform: translate(0,0);
+    text-shadow: none;
+  }
+}
+
+.logo:hover {
+  animation: none !important;
+  color: red;
+  transition: color 0.3s ease-in-out;
+}
+
+/* crossed state click */
+.logo:active .seb,
+.logo:active .athetic,
+.logo:active .credit {
+  text-decoration: line-through;
+  color: rgba(153, 0, 0, 0.6);
+}
+
+.computer-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  padding: 40px;
+}
+.text-content {
+  position: relative;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  left: 250px;
+  top: -60px;
+  color: white;
+  max-width: 40%;
+  line-height: 1.4;
+}
+
+/* text content keyframes */
+@keyframes textWiggle {
+  0%, 100% { transform: translate(0,0) rotate(0); }
+  25%      { transform: translate(-1px, 1px) rotate(-0.5deg); }
+  50%      { transform: translate(0,0) rotate(0); }
+  75%      { transform: translate(1px, -1px) rotate(0.5deg); }
+}
+
+.text-content span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center center;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* infinite wiggle */
+@keyframes wiggleComp {
+  0%,100% { transform: rotate(0deg); }
+  25%     { transform: rotate(1deg); }
+  75%     { transform: rotate(-1deg); }
+}
+
+/* computer page */
+.computer-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;  
+  position: relative;
+  animation: wiggleComp 2s infinite ease-in-out;
+  transform-origin: center;
+}
+
+/* computer hover */
+.computer {
+  position: relative;
+  left: -150px;    
+  display: block;
+  width: 800px;
+  transition: transform 0.3s ease;
+}
+
+.computer:hover {
+  transform: scale(1.1);
+}
+
+/* coffee page */
+.coffee-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  padding: 40px;
+}
+
+.coffee-img {
+  display: flex;
+  width: 800px;
+  margin-left: 150px;                 
+  animation: wiggleComp 2s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.text-content2 {
+  flex: 1;
+  position: relative;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  left: 100px;
+  top: 80px;
+  color: white;
+  line-height: 1.4;
+  margin-left: 20px;
+}
+
+.text-content2 span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center ;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content2 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.coffee-container {
+  position: relative;
+  display: inline-block;
+}
+
+.coffee-overlay {
+  position: absolute;
+  top: 0;
+  left: 150px;
+  width: 800px;      
+  height: 100%;      
+  opacity: 0;
+  animation: wiggleComp 2s infinite ease-in-out;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.coffee-container:hover .coffee-overlay {
+  opacity: 1;
+}
+
+.coffee-container:active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 150px;
+  width: 800px;          
+  height: 100%;           
+  background: red;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* pillow page */
+.pillow-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  padding: 40px;
+}
+
+.pillow-img {
+  display: block;           
+  width: 800px;             
+  transition: transform 0.3s ease;
+  animation: wiggleComp 2s infinite ease-in-out;
+}
+
+.text-content3 {
+  position: relative;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  left: 230px;
+  top: 50px;
+  color: white;
+  line-height: 1.4;
+}
+
+.text-content3 span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content3 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.pillow-container {
+  position: relative;
+  display: inline-block;
+  transform: scale(1.1);
+  left: -180px;              
+}
+
+@keyframes intenseShake {
+  0%,100% { transform: translate(0,0) rotate(0); }
+  20%      { transform: translate(-5px,5px) rotate(-2deg); }
+  40%      { transform: translate(5px,-5px) rotate(2deg); }
+  60%      { transform: translate(-5px,-5px) rotate(-2deg); }
+  80%      { transform: translate(5px,5px) rotate(2deg); }
+}
+
+.pillow-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.pillow-container.glitch .pillow-overlay {
+  opacity: 1;
+  animation: intenseShake 0.1s infinite ease-in-out;
+}
+
+/* frog page */
+.frog-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  padding: 40px;
+}
+
+.frog-img {
+  display: block;           
+  width: 700px;             
+  transition: transform 0.3s ease;
+  animation: wiggleComp 2s infinite ease-in-out;
+}
+
+
+.text-content4 {
+  flex: 1;
+  position: relative;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  left: 300px;
+  top: 0px;
+  color: white;
+  line-height: 1.4;
+  margin-left: 20px;
+}
+
+
+.text-content4 span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center center;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content4 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.frog-container {
+  position: relative;
+  display: inline-block;
+  left: 150px;              
+}
+
+.frog-overlay {
+  width: 650px;    
+  height: auto;
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+.frog-container:hover .frog-img {
+  opacity: 0;
+}
+.frog-container:hover .frog-overlay {
+  opacity: 1;
+}
+
+@keyframes distort {
+  0%   { filter: url('#displacementFilter'); }
+  50%  { filter: url('#displacementFilter2'); }
+  100% { filter: url('#displacementFilter'); }
+}
+
+.frog-container.distort .frog-img,
+.frog-container.distort .frog-overlay {
+  filter: url('#distortionFilter');
+}
+
+.frog-overlay {
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+/* guitar page */
+.text-content5 {
+  position: relative;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  left: 200px;
+  top: 500px;
+  color: white;
+  line-height: 1.4;
+}
+
+
+.text-content5 span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center center;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content5 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* guitar transition */
+.guitar-container {
+  position: relative;
+  top: -200px;
+  left: 900px;
+  display: inline-block;
+  width: 800px;   
+  overflow: hidden;
+  animation: wiggleComp 4s infinite ease-in-out;
+}
+
+.guitar-overlay1 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1;              
+  opacity: 0;
+  animation: swap12 2s steps(1) infinite;
+}
+
+.guitar-overlay2 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 2;
+}
+
+/* swap animation */
+.guitar-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: swap12-base 2s steps(1) infinite;
+  z-index: 0;
+}
+
+@keyframes swap12 {
+  0%, 49.9%   { opacity: 0; }  
+  50%, 100%   { opacity: 1; }  
+}
+@keyframes swap12-base {
+  0%, 49.9%   { opacity: 1; }  
+  50%, 100%   { opacity: 0; }  
+}
+
+.guitar-container:hover .guitar-img,
+.guitar-container:hover .guitar-overlay1 {
+  opacity: 0 !important;
+  animation: none !important;
+}
+.guitar-container:hover .guitar-overlay2 {
+  opacity: 1;
+  position: absolute; top:0; left:0;
+  width: 100%; height: auto;
+  z-index: 2;
+}
+
+.guitar-overlay2-wrapper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.guitar-overlay2-wrapper {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.guitar-container:hover .guitar-overlay2-wrapper {
+  opacity: 1;  
+}
+
+.guitar-container.shake .guitar-overlay2 {
+  opacity: 1 !important;  
+  animation: intenseShake 0.1s infinite ease-in-out;
+  transform-origin: center;
+}
+
+/* smoke page */
+
+.smoke-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+.smoke-container {
+  flex: 0 0 700px;       /* width of smoke1.png */
+  position: relative;
+  top: -100px; 
+  left: 100px;   
+  overflow: hidden;
+  animation: wiggleComp 2s infinite ease-in-out;
+}
+
+/* base frame stays in flow to give container height */
+.smoke-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  animation: smoke1Cycle 3s steps(1) infinite;
+}
+
+/* overlays stack exactly atop the base */
+.smoke-overlay1,
+.smoke-overlay2 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+}
+
+/* frame 2 */
+.smoke-overlay1 {
+  z-index: 1;
+  animation: smoke2Cycle 3s steps(1) infinite;
+}
+
+/* frame 3 */
+.smoke-overlay2 {
+  z-index: 2;
+  animation: smoke3Cycle 3s steps(1) infinite;
+}
+
+/* visibility windows */
+@keyframes smoke1Cycle {
+  0%,   33.333% { opacity: 1; }
+  33.334%,100% { opacity: 0; }
+}
+@keyframes smoke2Cycle {
+  0%,   33.333% { opacity: 0; }
+  33.334%,66.666% { opacity: 1; }
+  66.667%,100% { opacity: 0; }
+}
+@keyframes smoke3Cycle {
+  0%,   66.666% { opacity: 0; }
+  66.667%,100% { opacity: 1; }
+}
+
+/* right column: poem text */
+.text-content6 {
+  position: relative;
+  flex: 1;
+  left: 300px;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  color: white;
+  line-height: 1.4;
+  margin-left: 20px;
+}
+.text-content6 span {
+  display: inline-block;
+  animation: textWiggle 2s infinite ease-in-out;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+.text-content6 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* seby page */
+.text-content7 {
+  position: relative;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  left: 230px;
+  top: 500px;
+  color: white;
+  line-height: 1.4;
+}
+
+
+.text-content7 span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center center;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content7 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* seby part */
+.seby-container {
+  position: relative;
+  top: -200px;
+  left: 850px;
+  display: inline-block;
+  width: 850px;   
+  overflow: hidden;
+  animation: wiggleComp 4s infinite ease-in-out;
+}
+
+.seby {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: sebyDistortCycle 4s infinite ease-in-out;
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 1s ease; 
+}
+
+.seby-overlay1 {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1s ease;
+  z-index: 1;
+}
+
+.seby-container:hover .seby {
+  clip-path: inset(0 0 100% 0);
+}
+.seby-container:hover .seby-overlay1 {
+  clip-path: inset(0 0 0 0);
+  animation: sebyDistortCycle 2s infinite ease-in-out;
+}
+
+@keyframes sebyDistortCycle {
+  0%, 30%   { filter: none; }
+  40%, 60%  { filter: url('#distortionFilter'); }
+  70%,100%  { filter: none; }
+}
+
+/* hand page */
+.text-content8 {
+  position: relative;
+  top: 0px;
+  font-family: 'MyFont2', cursive;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  z-index: 2;
+  line-height: 1.4;
+}
+
+
+.text-content8 span {
+  display: inline-block;             
+  animation: textWiggle 2s infinite ease-in-out;
+  transform-origin: center center;
+  transition: color 0.3s ease;
+  transition: 
+    transform 0.4s ease, 
+    letter-spacing 0.4s ease, 
+    opacity 0.4s ease;
+}
+
+.text-content8 span:hover {
+  color: red;
+  transform: translateY(-15px) rotate(-1deg);
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.hand-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  min-height: 80vh;
+  box-sizing: border-box;
+}
+
+.hand-container {
+  position: relative;
+  top: -100px;
+  width: 500px;            
+  height: auto;
+  box-sizing: border-box;
+}
+
+.hand-container img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hand {
+  z-index: 0;
+  animation: cycle1to2-base 1.2s steps(1) infinite;
+}
+.hand-overlay1 {
+  z-index: 1;
+  animation: cycle1to2-overlay 1.2s steps(1) infinite;
+}
+@keyframes cycle1to2-base {
+  0%,49.9% { opacity: 1; }
+  50%,100% { opacity: 0; }
+}
+@keyframes cycle1to2-overlay {
+  0%,49.9% { opacity: 0; }
+  50%,100% { opacity: 1; }
+}
+
+.hand-container:hover .hand,
+.hand-container:hover .hand-overlay1 {
+  animation: none !important;
+  opacity: 0 !important;
+}
+.hand-container:hover .hand-overlay2 {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hand-container .hand-overlay2 {
+  opacity: 0;
+}
+.hand-container.clicked .hand-overlay2 { opacity: 1; }
+.hand-container.clicked .hand-overlay3,
+.hand-container.clicked .hand-overlay4 {
+  animation: click3to5 0.6s steps(1) forwards;
+}
+@keyframes click3to5 {
+  0%   { opacity: 0; }   
+  33%  { opacity: 0; }   
+  33.1%{ opacity: 1; }   
+  66%  { opacity: 1; }   
+  66.1%{ opacity: 0; }   
+  100% { opacity: 0; }   
+}
+
+
+/* keyframe for the click effect text content */
+@keyframes floatLetter {
+  0%,100% { transform: translateY(0); }
+  25%     { transform: translateY(-8px) rotate(-1deg); }
+  50%     { transform: translateY(5px) rotate(1deg); }
+  75%     { transform: translateY(-3px) rotate(-0.5deg); }
+}
+
+.letter {
+  display: inline-block;
+  will-change: transform;
+}
+
+
+[class^="text-content"].clicked {
+  letter-spacing: 0.05em;  
+}
+
+
+[class^="text-content"].clicked .letter {
+  animation: floatLetter 3s ease-in-out both;
+}
+
+[class^="text-content"].clicked .letter:nth-child(4n+1) { animation-delay: 0s; }
+[class^="text-content"].clicked .letter:nth-child(4n+2) { animation-delay: 0.5s; }
+[class^="text-content"].clicked .letter:nth-child(4n+3) { animation-delay: 1s; }
+[class^="text-content"].clicked .letter:nth-child(4n+4) { animation-delay: 1.5s; }
